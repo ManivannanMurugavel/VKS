@@ -15,3 +15,4 @@ D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.ProductPrice.resource
 D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.PriceChange.resources
 D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Login.resources
 D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.UserDetails.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Details.resources

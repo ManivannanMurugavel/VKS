@@ -17,6 +17,7 @@ namespace VKS
         OleDbCommand cmd;
         public static string priceproductid = "";
         public static string priceproductname = "";
+		public static string weighttype = "";
         public ProductPrice()
         {
             InitializeComponent();
@@ -38,7 +39,7 @@ namespace VKS
                 OleDbDataReader reader = cmd.ExecuteReader();
                 while(reader.Read())
                 {
-                    dataGridView1.Rows.Add(reader["prdId"], reader["cateName"], reader["prdName"], reader["weight"], reader["price"], reader["userName"]);
+                    dataGridView1.Rows.Add(reader["prdId"], reader["cateName"], reader["prdName"], reader["weightType"], reader["weight"], reader["price"], reader["userName"]);
                 }
                 reader.Close();
             }
@@ -64,7 +65,8 @@ namespace VKS
             }
             priceproductid = dataGridView1.Rows[selectedrowindex].Cells["prdId"].Value.ToString();
             priceproductname = dataGridView1.Rows[selectedrowindex].Cells["prdName"].Value.ToString();
-            PriceChange pc = new PriceChange();
+			weighttype = dataGridView1.Rows[selectedrowindex].Cells["weightType"].Value.ToString();
+			PriceChange pc = new PriceChange();
             pc.Show();
         }
 

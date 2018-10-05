@@ -20,7 +20,14 @@ namespace VKS
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-
+			if (Login.usertype == "User")
+			{
+				button1.Enabled = false;
+				button2.Enabled = false;
+				button4.Enabled = false;
+				button5.Enabled = false;
+				button7.Enabled = false;
+			}
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -68,5 +75,12 @@ namespace VKS
             op.Show();
             this.Hide();
         }
-    }
+
+		private void button7_Click(object sender, EventArgs e)
+		{
+			Details dt = new Details();
+			dt.Show();
+			this.Hide();
+		}
+	}
 }

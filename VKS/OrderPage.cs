@@ -26,6 +26,7 @@ namespace VKS
         int col = 0;
         double currPrdAvaQty = 0;
         bool alreadySaved = false;
+		bool check = false;
         public OrderPage()
         {
             InitializeComponent();
@@ -131,7 +132,7 @@ namespace VKS
                 {
                     reader.Read();
                     textBox1.Text = reader["prdId"].ToString();
-                    cmd.CommandText = "select price from StoreProductPrice where prdId='"+textBox1.Text+"'";
+                    cmd.CommandText = "select price from StoreProductPrice where prdId='"+textBox1.Text+"' and weightType='"+comboBox3.SelectedItem.ToString()+"'";
                     reader.Close();
                     reader = cmd.ExecuteReader();
                     reader.Read();
@@ -197,6 +198,7 @@ namespace VKS
 
         private void OrderPage_Load(object sender, EventArgs e)
         {
+			comboBox3.SelectedIndex = 0;
             string text;
             bool test = File.Exists(@"C:\VKS\files\பொருளின்_பிரிவு.txt");
             if (test)
@@ -344,7 +346,55 @@ namespace VKS
             //MessageBox.Show(gridRowCnt.ToString());
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+		private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				if (textBox1.Text == "" && check)
+				{
+					MessageBox.Show("பொருளை தேர்ந்தெடுங்கள்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					return;
+				}
+				if (!check)
+				{
+					check = true;
+					return;
+				}
+				if (con.State == ConnectionState.Closed)
+					con.Open();
+				cmd = con.CreateCommand();
+				cmd.CommandText = "select price from StoreProductPrice where prdId='" + textBox1.Text + "' and weightType='" + comboBox3.SelectedItem.ToString() + "'";
+				OleDbDataReader reader = cmd.ExecuteReader();
+				reader.Read();
+				prdPrice.Text = reader["price"].ToString();
+				reader.Close();
+				cmd.CommandText = "select qty from StockDetails where prdId='" + textBox1.Text + "'";
+				reader = cmd.ExecuteReader();
+				reader.Read();
+				currPrdAvaQty = Convert.ToDouble(reader["qty"].ToString());
+				reader.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				if (con.State == ConnectionState.Open)
+				{
+					con.Close();
+					cmd.Dispose();
+				}
+				
+			}
+		}
+
+		private void qtyValue_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void timer1_Tick(object sender, EventArgs e)
         {
             label2.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
         }

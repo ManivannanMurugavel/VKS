@@ -34,12 +34,12 @@ namespace VKS
                 if (con.State == ConnectionState.Closed)
                     con.Open();
                 cmd = con.CreateCommand();
-                cmd.CommandText = "update StoreProductPrice set price="+price+" where prdId='"+ productid + "'";
+				
+                cmd.CommandText = "update StoreProductPrice set price="+price+" where prdId='"+ productid + "' and weightType='"+comboBox3.SelectedItem.ToString()+"'";
                 int result = cmd.ExecuteNonQuery();
                 if (result > 0)
                 { 
                     MessageBox.Show("பொருளின் விலை மாற்றப்பட்டது");
-                    
                     this.Close();
                 }
             }
@@ -56,8 +56,10 @@ namespace VKS
 
         private void PriceChange_Load(object sender, EventArgs e)
         {
+			//comboBox3.SelectedIndex = 0;
             textBox1.Text = ProductPrice.priceproductname;
             productid = ProductPrice.priceproductid;
+			comboBox3.SelectedItem = ProductPrice.weighttype;
         }
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
@@ -67,5 +69,10 @@ namespace VKS
                 button1_Click(this, new EventArgs());
             }
         }
-    }
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+	}
 }

@@ -29,7 +29,7 @@ namespace VKS
         {
             try
             {
-                
+				comboBox4.SelectedIndex = 1;   
                 tableName = MainMenu.tableName;
                 if (radioButton1.Checked == true)
                 {
@@ -277,9 +277,11 @@ namespace VKS
                     MessageBox.Show("பொருளின் விலை சேர்க்கப்பட்டது");
                 else
                 {
-                    cmd.CommandText = "insert into StoreProductPrice(prdId,cateName,prdName,weight,price,userName) values('" + id + "','" + catePrd + "','" + prdName + "',1," + price + ",'" + username + "')";
+                    cmd.CommandText = "insert into StoreProductPrice(prdId,cateName,prdName,weightType,weight,price,userName) values('" + id + "','" + catePrd + "','" + prdName + "','கிலோ',1," + price + ",'" + username + "')";
                     result = cmd.ExecuteNonQuery();
-                    if (result > 0)
+					cmd.CommandText = "insert into StoreProductPrice(prdId,cateName,prdName,weightType,weight,price,userName) values('" + id + "','" + catePrd + "','" + prdName + "','லிட்டர்',1," + price + ",'" + username + "')";
+					result = cmd.ExecuteNonQuery();
+					if (result > 0)
                         MessageBox.Show("பொருளின் விலை சேர்க்கப்பட்டது");
                     else
                         MessageBox.Show("பொருளின் விலை சேர்க்கப்படவில்லை");
@@ -359,6 +361,7 @@ namespace VKS
 
         private void button2_Click(object sender, EventArgs e)
         {
+			//MessageBox.Show(comboBox4.SelectedItem.ToString());
             this.Close();
         }
     }

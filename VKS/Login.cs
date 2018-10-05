@@ -45,6 +45,8 @@ namespace VKS
                 OleDbDataReader reader = cmd.ExecuteReader();
                 if(reader.HasRows)
                 {
+					reader.Read();
+					usertype = reader["userType"].ToString();
                     MessageBox.Show("சரியான தகவல்கள்", "உள்நுழை",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     mm.Show();
                     this.Hide();
