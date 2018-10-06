@@ -18,7 +18,7 @@ namespace VKS
         OleDbCommand cmd;
         int num = 0;
         string name = "";
-        double prdprice,quantity;
+        double prdprice,quantity,original;
         string ordIdNum = "";
         double totalPrdQty = 0;
         string[,] orderProductsList;
@@ -60,49 +60,60 @@ namespace VKS
         {
 			//MessageBox.Show(currPrdAvaQty.ToString());
 			try
-            {
+			{
 				quantity = Convert.ToDouble(qtyValue.Text);
+				original = quantity;
+				string weighttype = "Kg";
+				if (comboBox3.SelectedItem.ToString() == "லிட்டர்")
+				{
+					original = Convert.ToDouble(qtyValue.Text)*1.11;
+					weighttype = "ltr";
+				}
 				if (quantity > currPrdAvaQty)
 				{
-					MessageBox.Show("இந்த பொருளின் இருப்பு "+currPrdAvaQty.ToString()+" உள்ளது", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show("இந்த பொருளின் இருப்பு " + currPrdAvaQty.ToString() + " உள்ளது", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					return;
 				}
 				if (alreadySaved)
-                {
-                    alreadySaved = false;
-                    dataGridView1.Rows.Clear();
-                    dataGridView1.Refresh();
-                    getOrderId();
-                }
-                name = comboBox2.SelectedItem.ToString();
-                prdprice = Convert.ToDouble(prdPrice.Text);
-                
-                totalPrdQty = totalPrdQty + quantity;
-                num++;
-                double totalamount = (quantity * prdprice);
-                label4.Text = (Convert.ToDouble(label4.Text)+totalamount).ToString();
-                dataGridView1.Rows.Add(num,textBox1.Text, name, prdprice, quantity, totalamount);
-                comboBox1.SelectedIndex = -1;
-                comboBox2.SelectedIndex = -1;
-                comboBox2.Items.Clear();
-                textBox1.Text = "";
-                comboBox1.Text = "தேர்ந்தெடு";
-                comboBox2.Text = "தேர்ந்தெடு";
-                prdPrice.Text = "";
-                qtyValue.Text = "";
-                row++;
-            }
-            catch(NullReferenceException ex)
-            {
-                MessageBox.Show("பொருளின் பெயர் மற்றும் வகையை நிரப்பு");
-            }
-            catch(FormatException)
-            {
-                MessageBox.Show("பொருளின் விலையை நிரப்பு");
-            }
-            finally
-            {
-            }
+				{
+					alreadySaved = false;
+					dataGridView1.Rows.Clear();
+					dataGridView1.Refresh();
+					getOrderId();
+				}
+				name = comboBox2.SelectedItem.ToString();
+				prdprice = Convert.ToDouble(prdPrice.Text);
+
+				totalPrdQty = totalPrdQty + quantity;
+				num++;
+				double totalamount = (quantity * prdprice);
+				label4.Text = (Convert.ToDouble(label4.Text) + totalamount).ToString();
+				dataGridView1.Rows.Add(num, textBox1.Text, name, prdprice, quantity, original, weighttype, totalamount);
+				comboBox1.SelectedIndex = -1;
+				comboBox2.SelectedIndex = -1;
+				comboBox2.Items.Clear();
+				textBox1.Text = "";
+				comboBox1.Text = "தேர்ந்தெடு";
+				comboBox2.Text = "தேர்ந்தெடு";
+				prdPrice.Text = "";
+				qtyValue.Text = "";
+				row++;
+			}
+			catch (InvalidOperationException ex)
+			{
+				MessageBox.Show("இந்த பொருளின் விலை இல்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			catch (NullReferenceException ex)
+			{
+				MessageBox.Show("பொருளின் பெயர் மற்றும் வகையை நிரப்பு", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			catch (FormatException)
+			{
+				MessageBox.Show("பொருளின் விலையை நிரப்பு", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			finally
+			{
+			}
         }
 
         private void qtyValue_ValueChanged(object sender, EventArgs e)
@@ -151,7 +162,11 @@ namespace VKS
                 }
                 reader.Close();
             }
-            catch(Exception ex)
+			catch (InvalidOperationException ex)
+			{
+				MessageBox.Show("இந்த பொருளின் விலை இல்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -251,6 +266,7 @@ namespace VKS
                         ordIdNum = "VKSSTRORD" + ordIdNum;
                     }                       
                     string username = "";
+					username = Login.userName;
                     string prdType = "StoreProduct";
                     if (con.State == ConnectionState.Closed)
                         con.Open();
@@ -261,9 +277,9 @@ namespace VKS
                     //MessageBox.Show(datagridlength.ToString());
                     for (int i = 0; i < datagridlength; i++)
                     {
-                        cmd.CommandText = "insert into StoreOrderItems(ordId,prdId,prdType,prdName,qty,price,totalPrice,userName) values('"+ ordIdNum + "','"+ dataGridView1.Rows[i].Cells["productid"].Value.ToString() + "','"+prdType+"','"+ dataGridView1.Rows[i].Cells["productname"].Value.ToString() + "',"+Convert.ToDouble(dataGridView1.Rows[i].Cells["qty"].Value.ToString()) +","+Convert.ToDouble(dataGridView1.Rows[i].Cells["price"].Value.ToString()) +","+Convert.ToDouble(dataGridView1.Rows[i].Cells["totalprice"].Value.ToString()) +",'"+username+"')";
+                        cmd.CommandText = "insert into StoreOrderItems(ordId,prdId,prdType,prdName,qty,price,totalPrice,userName,weightType) values('"+ ordIdNum + "','"+ dataGridView1.Rows[i].Cells["productid"].Value.ToString() + "','"+prdType+"','"+ dataGridView1.Rows[i].Cells["productname"].Value.ToString() + "',"+Convert.ToDouble(dataGridView1.Rows[i].Cells["qty"].Value.ToString()) +","+Convert.ToDouble(dataGridView1.Rows[i].Cells["price"].Value.ToString()) +","+Convert.ToDouble(dataGridView1.Rows[i].Cells["totalprice"].Value.ToString()) +",'"+username+"','" + dataGridView1.Rows[i].Cells["weightType"].Value.ToString() + "')";
                         cmd.ExecuteNonQuery();
-                        cmd.CommandText = "update StockDetails set qty=qty-"+ Convert.ToDouble(dataGridView1.Rows[i].Cells["qty"].Value.ToString()) + " where prdId='"+ dataGridView1.Rows[i].Cells["productid"].Value.ToString() + "'";
+                        cmd.CommandText = "update StockDetails set qty=qty-"+ Convert.ToDouble(dataGridView1.Rows[i].Cells["oriQty"].Value.ToString()) + " where prdId='"+ dataGridView1.Rows[i].Cells["productid"].Value.ToString() + "'";
                         cmd.ExecuteNonQuery();
                     }
                     cmd.CommandText = "update IdRef set strordid=strordid+1";
@@ -286,7 +302,6 @@ namespace VKS
             {
                 MessageBox.Show("உங்களது பொருள்கள் சேமிக்கப்படவில்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            printPreviewDialog1.ShowDialog();
             printPreviewDialog1.Document = printDocument1;
             
             printPreviewDialog1.ShowDialog();
@@ -335,7 +350,7 @@ namespace VKS
                 e.Graphics.DrawLine(new Pen(Color.Black, 2), 150, y-50, 150, y);
                 e.Graphics.DrawString(dataGridView1.Rows[irow-1].Cells["productname"].Value.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 160, y - 40);
                 e.Graphics.DrawLine(new Pen(Color.Black, 2), 600, y - 50, 600, y);
-                e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["qty"].Value.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 620, y - 40);
+                e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["qty"].Value.ToString()+""+ dataGridView1.Rows[irow - 1].Cells["weightType"].Value.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 620, y - 40);
                 e.Graphics.DrawLine(new Pen(Color.Black, 2), 700, y - 50, 700, y);
                 e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 720, y - 40);
                 e.Graphics.DrawLine(new Pen(Color.Black, 2), 800, y - 50, 800, y);
@@ -373,6 +388,10 @@ namespace VKS
 				reader.Read();
 				currPrdAvaQty = Convert.ToDouble(reader["qty"].ToString());
 				reader.Close();
+			}
+			catch (InvalidOperationException ex)
+			{
+				MessageBox.Show("இந்த பொருளின் விலை இல்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch (Exception ex)
 			{

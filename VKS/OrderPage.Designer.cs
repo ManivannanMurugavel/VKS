@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderPage));
 			this.label1 = new System.Windows.Forms.Label();
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -39,15 +39,10 @@
 			this.prdPrice = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.comboBox3 = new System.Windows.Forms.ComboBox();
 			this.qtyValue = new System.Windows.Forms.TextBox();
 			this.button2 = new System.Windows.Forms.Button();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.productid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.productname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.totalprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.label2 = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.label3 = new System.Windows.Forms.Label();
@@ -56,7 +51,14 @@
 			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
 			this.label5 = new System.Windows.Forms.Label();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
+			this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.productid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.productname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.oriQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.weightType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.totalprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
@@ -143,6 +145,19 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "பொருளின் விவரம்";
 			// 
+			// comboBox3
+			// 
+			this.comboBox3.Font = new System.Drawing.Font("News706 BT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.comboBox3.FormattingEnabled = true;
+			this.comboBox3.Items.AddRange(new object[] {
+            "கிலோ",
+            "லிட்டர்"});
+			this.comboBox3.Location = new System.Drawing.Point(989, 35);
+			this.comboBox3.Name = "comboBox3";
+			this.comboBox3.Size = new System.Drawing.Size(75, 27);
+			this.comboBox3.TabIndex = 19;
+			this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+			// 
 			// qtyValue
 			// 
 			this.qtyValue.Font = new System.Drawing.Font("News706 BT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -170,20 +185,20 @@
 			// 
 			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle15.BackColor = System.Drawing.Color.Silver;
-			dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
 			this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -191,47 +206,13 @@
             this.productname,
             this.price,
             this.qty,
+            this.oriQty,
+            this.weightType,
             this.totalprice});
 			this.dataGridView1.Location = new System.Drawing.Point(25, 335);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.Size = new System.Drawing.Size(1018, 352);
 			this.dataGridView1.TabIndex = 19;
-			// 
-			// id
-			// 
-			this.id.FillWeight = 94.68761F;
-			this.id.HeaderText = "வரிசை எண்";
-			this.id.Name = "id";
-			// 
-			// productid
-			// 
-			this.productid.HeaderText = "Product ID";
-			this.productid.Name = "productid";
-			this.productid.Visible = false;
-			// 
-			// productname
-			// 
-			this.productname.FillWeight = 99.5038F;
-			this.productname.HeaderText = "பொருளின் பெயர்";
-			this.productname.Name = "productname";
-			// 
-			// price
-			// 
-			this.price.FillWeight = 103.0859F;
-			this.price.HeaderText = "பொருளின் விலை";
-			this.price.Name = "price";
-			// 
-			// qty
-			// 
-			this.qty.FillWeight = 102.4721F;
-			this.qty.HeaderText = "எண்ணிக்கை";
-			this.qty.Name = "qty";
-			// 
-			// totalprice
-			// 
-			this.totalprice.FillWeight = 100.2506F;
-			this.totalprice.HeaderText = "மொத்த விலை";
-			this.totalprice.Name = "totalprice";
 			// 
 			// label2
 			// 
@@ -305,18 +286,53 @@
 			this.label5.TabIndex = 23;
 			this.label5.Text = "10";
 			// 
-			// comboBox3
+			// id
 			// 
-			this.comboBox3.Font = new System.Drawing.Font("News706 BT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Items.AddRange(new object[] {
-            "கிலோ",
-            "லிட்டர்"});
-			this.comboBox3.Location = new System.Drawing.Point(989, 35);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(75, 27);
-			this.comboBox3.TabIndex = 19;
-			this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+			this.id.FillWeight = 94.68761F;
+			this.id.HeaderText = "வரிசை எண்";
+			this.id.Name = "id";
+			// 
+			// productid
+			// 
+			this.productid.HeaderText = "Product ID";
+			this.productid.Name = "productid";
+			this.productid.Visible = false;
+			// 
+			// productname
+			// 
+			this.productname.FillWeight = 99.5038F;
+			this.productname.HeaderText = "பொருளின் பெயர்";
+			this.productname.Name = "productname";
+			// 
+			// price
+			// 
+			this.price.FillWeight = 103.0859F;
+			this.price.HeaderText = "பொருளின் விலை";
+			this.price.Name = "price";
+			// 
+			// qty
+			// 
+			this.qty.FillWeight = 102.4721F;
+			this.qty.HeaderText = "எண்ணிக்கை";
+			this.qty.Name = "qty";
+			// 
+			// oriQty
+			// 
+			this.oriQty.HeaderText = "OriginalQuantity";
+			this.oriQty.Name = "oriQty";
+			this.oriQty.Visible = false;
+			// 
+			// weightType
+			// 
+			this.weightType.FillWeight = 50F;
+			this.weightType.HeaderText = "எ.வகை";
+			this.weightType.Name = "weightType";
+			// 
+			// totalprice
+			// 
+			this.totalprice.FillWeight = 100.2506F;
+			this.totalprice.HeaderText = "மொத்த விலை";
+			this.totalprice.Name = "totalprice";
 			// 
 			// OrderPage
 			// 
@@ -364,13 +380,15 @@
         private System.Windows.Forms.Button button3;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalprice;
         private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ComboBox comboBox3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn id;
+		private System.Windows.Forms.DataGridViewTextBoxColumn productid;
+		private System.Windows.Forms.DataGridViewTextBoxColumn productname;
+		private System.Windows.Forms.DataGridViewTextBoxColumn price;
+		private System.Windows.Forms.DataGridViewTextBoxColumn qty;
+		private System.Windows.Forms.DataGridViewTextBoxColumn oriQty;
+		private System.Windows.Forms.DataGridViewTextBoxColumn weightType;
+		private System.Windows.Forms.DataGridViewTextBoxColumn totalprice;
 	}
 }
