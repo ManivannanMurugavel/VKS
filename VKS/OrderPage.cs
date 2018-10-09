@@ -82,6 +82,7 @@ namespace VKS
 					dataGridView1.Refresh();
 					getOrderId();
 					label4.Text = "0";
+					num = 0;
 				}
 				name = comboBox2.SelectedItem.ToString();
 				prdprice = Convert.ToDouble(prdPrice.Text);
