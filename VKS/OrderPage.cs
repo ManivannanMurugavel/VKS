@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.IO;
@@ -241,15 +242,15 @@ namespace VKS
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.RowCount == 0)
+			if (dataGridView1.RowCount == 0)
             {
                 MessageBox.Show("பொருளை சேர்க்கவும்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (alreadySaved)
             {
-                printPreviewDialog1.Document = printDocument1;
-
+				printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 600);
+				printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.ShowDialog();
                 return;
             }
@@ -303,8 +304,8 @@ namespace VKS
             {
                 MessageBox.Show("உங்களது பொருள்கள் சேமிக்கப்படவில்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            printPreviewDialog1.Document = printDocument1;
-            
+			printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 1600);
+			printPreviewDialog1.Document = printDocument1;  
             printPreviewDialog1.ShowDialog();
         }
 
@@ -320,7 +321,7 @@ namespace VKS
             // Order Informations
             e.Graphics.DrawLine(new Pen(Color.Black, 2), 70, 150, 800, 150);
             e.Graphics.DrawString("எண்  :", new Font("Modern No", 20), new SolidBrush(Color.Black), 80, 170);
-            e.Graphics.DrawString(ordIdNum, new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 170);
+            e.Graphics.DrawString(label5.Text, new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 170);
             e.Graphics.DrawString("தேதி:", new Font("Modern No", 20), new SolidBrush(Color.Black), 500, 170);
             e.Graphics.DrawString(label2.Text.Split(' ')[0], new Font("Modern No", 20), new SolidBrush(Color.Black), 600, 170);
             e.Graphics.DrawLine(new Pen(Color.Black, 2), 70, 240, 800, 240);

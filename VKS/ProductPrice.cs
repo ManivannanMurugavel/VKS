@@ -67,7 +67,9 @@ namespace VKS
             priceproductname = dataGridView1.Rows[selectedrowindex].Cells["prdName"].Value.ToString();
 			weighttype = dataGridView1.Rows[selectedrowindex].Cells["weightType"].Value.ToString();
 			PriceChange pc = new PriceChange();
-            pc.Show();
+			//pc.MdiParent = this;
+            //pc.Show();
+			pc.ShowDialog(this);
         }
 
         private void button2_Click(object sender, EventArgs e)
