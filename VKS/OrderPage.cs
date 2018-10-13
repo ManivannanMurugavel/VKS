@@ -22,7 +22,7 @@ namespace VKS
         double prdprice,quantity,original;
         string ordIdNum = "";
         double totalPrdQty = 0;
-        string[,] orderProductsList;
+        //string[,] orderProductsList;
         int row = 0;
         int col = 0;
         double currPrdAvaQty = 0;
@@ -64,11 +64,11 @@ namespace VKS
 			{
 				quantity = Convert.ToDouble(qtyValue.Text);
 				original = quantity;
-				string weighttype = "Kg";
+				string weighttype = "கிலோ";
 				if (comboBox3.SelectedItem.ToString() == "லிட்டர்")
 				{
 					original = Convert.ToDouble(qtyValue.Text)*1.11;
-					weighttype = "ltr";
+					weighttype = "லிட்டர்";
 				}
 				if (quantity > currPrdAvaQty)
 				{
@@ -216,6 +216,10 @@ namespace VKS
 
         private void OrderPage_Load(object sender, EventArgs e)
         {
+			textBox2.Text = "பெயர்";
+			textBox2.ForeColor = Color.Gray;
+			textBox3.Text = "கைபேசி";
+			textBox3.ForeColor = Color.Gray;
 			comboBox3.SelectedIndex = 0;
             string text;
             bool test = File.Exists(@"C:\VKS\files\பொருளின்_பிரிவு.txt");
@@ -256,8 +260,12 @@ namespace VKS
                 printPreviewDialog1.ShowDialog();
                 return;
             }
-
-            /*DialogResult dr = MessageBox.Show("உங்களது பொருள்களை சேமிக்கலாமா", "ஆர்டர்",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+			if (textBox2.Text == "பெயர்" && textBox3.Text == "கைபேசி")
+			{
+				MessageBox.Show("வாடிக்கையாளர் பெயர் மற்றும் கைபேசி சேர்க்கவும்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return;
+			}
+			/*DialogResult dr = MessageBox.Show("உங்களது பொருள்களை சேமிக்கலாமா", "ஆர்டர்",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
             if(dr == DialogResult.Yes)
             {
                 //MessageBox.Show(ordIdNum);
@@ -307,9 +315,20 @@ namespace VKS
                 MessageBox.Show("உங்களது பொருள்கள் சேமிக்கப்படவில்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 			*/
-			printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 600);
-			printPreviewDialog1.Document = printDocument1;  
-            printPreviewDialog1.ShowDialog();
+			try
+			{
+				printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 600);
+				printPreviewDialog1.Document = printDocument1;
+				printPreviewDialog1.ShowDialog();
+			}
+			catch (InvalidPrinterException)
+			{
+				MessageBox.Show("பிரின்டர் இல்லை");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -322,7 +341,15 @@ namespace VKS
 			//e.Graphics.DrawString("தொலைபேசி", new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 80);
             e.Graphics.DrawString("9751550566", new Font("Modern No", 10), new SolidBrush(Color.Black), 165, 40);
 			e.Graphics.DrawString("வாங்கிய பொருள்கள்", new Font("Modern No", 10), new SolidBrush(Color.Black), 120, 60);
-			e.Graphics.DrawImage(Image.FromFile("C:/VKS/images/vks-logo.jpg"), 320, 0);
+			//e.Graphics.DrawImage(Image.FromFile("C:/VKS/images/vks-logo.jpg"), 320, 0);
+
+			// Left Information
+			e.Graphics.DrawString("உரிமை", new Font("Modern No", 10,FontStyle.Bold), new SolidBrush(Color.Black), 30, 30);
+			e.Graphics.DrawString("வைரமணி", new Font("Modern No", 10), new SolidBrush(Color.Black), 20, 50);
+
+			// Right Information
+			e.Graphics.DrawString(textBox2.Text, new Font("Modern No", 10), new SolidBrush(Color.Black), 300, 20);
+			e.Graphics.DrawString(textBox3.Text, new Font("Modern No", 10), new SolidBrush(Color.Black), 300, 40);
 
 			// Order Informations
 			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 85, 400, 85);
@@ -360,7 +387,7 @@ namespace VKS
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, y-30, 0, y);
 				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["qty"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 195, y - 20);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 190, y - 30, 190, y);
-				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["weightType"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 720, y - 40);
+				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["weightType"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 265, y - 20);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 260, y - 30, 260, y);
 				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 335, y - 20);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 330, y - 30, 330, y);
@@ -381,8 +408,8 @@ namespace VKS
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 220, y + 5, 220, y + 55);
 				e.Graphics.DrawString("மொத்த எண்ணிக்கை", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 60, y + 10);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 50, y + 30, 350, y + 30);
-				e.Graphics.DrawString("(₹) " + label4.Text, new Font("Modern No", 8), new SolidBrush(Color.Black), 265, y + 35);
-				e.Graphics.DrawString(gridRowCnt.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 125, y + 35);
+				e.Graphics.DrawString("(₹) " + label4.Text, new Font("Modern No", 8,FontStyle.Bold), new SolidBrush(Color.Black), 255, y + 35);
+				e.Graphics.DrawString(gridRowCnt.ToString(), new Font("Modern No", 8,FontStyle.Bold), new SolidBrush(Color.Black), 125, y + 35);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 350, y + 5, 350, y + 55);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 50, y + 55, 350, y + 55);
 				e.Graphics.DrawString("மீண்டும் வருக", new Font("Modern No", 7,FontStyle.Bold), new SolidBrush(Color.Black), 160, y + 60);
@@ -438,6 +465,42 @@ namespace VKS
 					cmd.Dispose();
 				}
 				
+			}
+		}
+
+		private void textBox2_Enter(object sender, EventArgs e)
+		{
+			if (textBox2.Text == "பெயர்")
+			{
+				textBox2.Text = "";
+				textBox2.ForeColor = Color.Black;
+			}
+		}
+
+		private void textBox3_Enter(object sender, EventArgs e)
+		{
+			if (textBox3.Text == "கைபேசி")
+			{
+				textBox3.Text = "";
+				textBox3.ForeColor = Color.Black;
+			}
+		}
+
+		private void textBox3_Leave(object sender, EventArgs e)
+		{
+			if (textBox3.Text == "")
+			{
+				textBox3.Text = "கைபேசி";
+				textBox3.ForeColor = Color.Gray;
+			}
+		}
+
+		private void textBox2_Leave(object sender, EventArgs e)
+		{
+			if (textBox2.Text == "")
+			{				
+				textBox2.Text = "பெயர்";
+				textBox2.ForeColor = Color.Gray;
 			}
 		}
 

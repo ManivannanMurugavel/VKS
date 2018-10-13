@@ -16,7 +16,7 @@ namespace VKS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OrderPage());
+            Application.Run(new MainMenu());
         }
     }
 }
