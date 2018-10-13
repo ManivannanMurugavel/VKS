@@ -320,7 +320,7 @@ namespace VKS
 			e.Graphics.DrawString("VKS", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(180, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
 			// Contact Details
 			//e.Graphics.DrawString("தொலைபேசி", new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 80);
-            e.Graphics.DrawString("7639288278", new Font("Modern No", 10), new SolidBrush(Color.Black), 165, 40);
+            e.Graphics.DrawString("9751550566", new Font("Modern No", 10), new SolidBrush(Color.Black), 165, 40);
 			e.Graphics.DrawString("வாங்கிய பொருள்கள்", new Font("Modern No", 10), new SolidBrush(Color.Black), 120, 60);
 			e.Graphics.DrawImage(Image.FromFile("C:/VKS/images/vks-logo.jpg"), 320, 0);
 
