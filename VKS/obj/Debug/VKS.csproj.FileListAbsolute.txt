@@ -16,3 +16,26 @@ D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.PriceChange.resources
 D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Login.resources
 D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.UserDetails.resources
 D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Details.resources
+F:\VKS\VKS\bin\Debug\VKS.exe.config
+F:\VKS\VKS\obj\Debug\VKS.exe
+F:\VKS\VKS\obj\Debug\VKS.pdb
+F:\VKS\VKS\bin\Debug\VKS.exe
+F:\VKS\VKS\bin\Debug\VKS.pdb
+F:\VKS\VKS\bin\Debug\mscorlib.dll
+F:\VKS\VKS\bin\Debug\normidna.nlp
+F:\VKS\VKS\bin\Debug\normnfc.nlp
+F:\VKS\VKS\bin\Debug\normnfd.nlp
+F:\VKS\VKS\bin\Debug\normnfkc.nlp
+F:\VKS\VKS\bin\Debug\normnfkd.nlp
+F:\VKS\VKS\obj\Debug\VKS.csprojResolveAssemblyReference.cache
+F:\VKS\VKS\obj\Debug\VKS.Details.resources
+F:\VKS\VKS\obj\Debug\VKS.addProduct.resources
+F:\VKS\VKS\obj\Debug\VKS.Login.resources
+F:\VKS\VKS\obj\Debug\VKS.MainMenu.resources
+F:\VKS\VKS\obj\Debug\VKS.OrderPage.resources
+F:\VKS\VKS\obj\Debug\VKS.PriceChange.resources
+F:\VKS\VKS\obj\Debug\VKS.ProductDetails.resources
+F:\VKS\VKS\obj\Debug\VKS.ProductPrice.resources
+F:\VKS\VKS\obj\Debug\VKS.Properties.Resources.resources
+F:\VKS\VKS\obj\Debug\VKS.UserDetails.resources
+F:\VKS\VKS\obj\Debug\VKS.csproj.GenerateResource.Cache
