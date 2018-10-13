@@ -243,11 +243,12 @@ namespace VKS
 
         private void button3_Click(object sender, EventArgs e)
         {
-			if (dataGridView1.RowCount == 0)
+			/*if (dataGridView1.RowCount == 0)
             {
                 MessageBox.Show("பொருளை சேர்க்கவும்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+			*/
             if (alreadySaved)
             {
 				printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 600);
@@ -256,7 +257,7 @@ namespace VKS
                 return;
             }
 
-            DialogResult dr = MessageBox.Show("உங்களது பொருள்களை சேமிக்கலாமா", "ஆர்டர்",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+            /*DialogResult dr = MessageBox.Show("உங்களது பொருள்களை சேமிக்கலாமா", "ஆர்டர்",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
             if(dr == DialogResult.Yes)
             {
                 //MessageBox.Show(ordIdNum);
@@ -305,64 +306,93 @@ namespace VKS
             {
                 MessageBox.Show("உங்களது பொருள்கள் சேமிக்கப்படவில்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-			printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 1600);
+			*/
+			printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 600);
 			printPreviewDialog1.Document = printDocument1;  
             printPreviewDialog1.ShowDialog();
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            int totalX = 0, totalY = 0;
             int gridRowCnt = dataGridView1.Rows.Count;
-            // Title
-            e.Graphics.DrawString("VKS", new Font("Modern No", 30, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(400, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
-            // Contact Details
-            e.Graphics.DrawString("தொலைபேசி", new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 80);
-            e.Graphics.DrawString("7639288278", new Font("Modern No", 20), new SolidBrush(Color.Black), 500, 80);
-            // Order Informations
-            e.Graphics.DrawLine(new Pen(Color.Black, 2), 70, 150, 800, 150);
-            e.Graphics.DrawString("எண்  :", new Font("Modern No", 20), new SolidBrush(Color.Black), 80, 170);
-            e.Graphics.DrawString(label5.Text, new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 170);
-            e.Graphics.DrawString("தேதி:", new Font("Modern No", 20), new SolidBrush(Color.Black), 500, 170);
-            e.Graphics.DrawString(label2.Text.Split(' ')[0], new Font("Modern No", 20), new SolidBrush(Color.Black), 600, 170);
-            e.Graphics.DrawLine(new Pen(Color.Black, 2), 70, 240, 800, 240);
-            // Product List
-            e.Graphics.DrawLine(new Pen(Color.Black, 2), 70, 310, 800, 310);
-            e.Graphics.DrawLine(new Pen(Color.Black, 2), 70, 310, 70, 360);
-            StringFormat format1 = new StringFormat();
-            format1.Trimming = StringTrimming.EllipsisWord;
-            e.Graphics.DrawString("வ\nஎண்", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), 80, 310, format1);
-            e.Graphics.DrawLine(new Pen(Color.Black, 2), 150, 310, 150, 360);
-            e.Graphics.DrawString("பொருளின் பெயர்", new Font("Modern No", 15,FontStyle.Bold), new SolidBrush(Color.Black), 260, 320);
-            e.Graphics.DrawLine(new Pen(Color.Black, 2), 600, 310, 600, 360);
-            e.Graphics.DrawString("அளவு", new Font("Modern No", 15,FontStyle.Bold), new SolidBrush(Color.Black), 610, 320);
-            e.Graphics.DrawLine(new Pen(Color.Black, 2), 700, 310, 700, 360);
-            e.Graphics.DrawString("மதிப்பு", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), 705, 320);
-            e.Graphics.DrawLine(new Pen(Color.Black, 2), 800, 310, 800, 360);
-            e.Graphics.DrawLine(new Pen(Color.Black, 2), 70, 360, 800, 360);
+			//string tt = label2.Text.Split(' ')[1];
+			// Title
+			e.Graphics.DrawString("VKS", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(180, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
+			// Contact Details
+			//e.Graphics.DrawString("தொலைபேசி", new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 80);
+            e.Graphics.DrawString("7639288278", new Font("Modern No", 10), new SolidBrush(Color.Black), 165, 40);
+			e.Graphics.DrawString("வாங்கிய பொருள்கள்", new Font("Modern No", 10), new SolidBrush(Color.Black), 120, 60);
+			e.Graphics.DrawImage(Image.FromFile("C:/VKS/images/vks-logo.jpg"), 320, 0);
 
-            int rowValue = 360;
+			// Order Informations
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 85, 400, 85);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 88, 400, 88);
+			e.Graphics.DrawString("எண் :", new Font("Modern No", 10), new SolidBrush(Color.Black), 10, 95);
+            e.Graphics.DrawString(label5.Text, new Font("Modern No", 10), new SolidBrush(Color.Black), 60, 95);
+			
+			e.Graphics.DrawString("தேதி :", new Font("Modern No", 10), new SolidBrush(Color.Black), 125, 95);
+			e.Graphics.DrawString(label2.Text.Split(' ')[0], new Font("Modern No", 10), new SolidBrush(Color.Black), 175, 95);
+
+			e.Graphics.DrawString("Time :", new Font("Modern No", 10), new SolidBrush(Color.Black), 270, 95);
+			e.Graphics.DrawString(label2.Text.Split(' ')[1], new Font("Modern No", 10), new SolidBrush(Color.Black), 310, 95);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 115, 400, 115);
+			//e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 118, 400, 118);
+            // Product List
+            //e.Graphics.DrawLine(new Pen(Color.Black, 2), 150, 310, 150, 360);
+            e.Graphics.DrawString("பொருளின் பெயர்", new Font("Modern No", 8,FontStyle.Bold), new SolidBrush(Color.Black), 40, 125);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 190, 115, 190, 145);
+			e.Graphics.DrawString("அளவு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 205, 125);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 260, 115, 260, 145);
+			e.Graphics.DrawString("அலகு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 275, 125);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 330, 115, 330, 145);
+			e.Graphics.DrawString("மதிப்பு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 345, 125);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 145, 400, 145);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 148, 400, 148);
+			
+            int rowValue = 145;
             int y = 0;
             // Order List
             for(int irow=1;irow<=gridRowCnt;irow++)
             {
-                y = rowValue + (irow * 50);
-                e.Graphics.DrawLine(new Pen(Color.Black, 2), 70, y, 800, y);
-                e.Graphics.DrawLine(new Pen(Color.Black, 2), 70, y-50, 70, y);
-                e.Graphics.DrawString(irow.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 80, y - 40);
+                y = rowValue + (irow * 30);
+                e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, y, 400, y);
+				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["productname"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 10, y - 20);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, y-30, 0, y);
+				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["qty"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 195, y - 20);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 190, y - 30, 190, y);
+				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["weightType"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 720, y - 40);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 260, y - 30, 260, y);
+				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 335, y - 20);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 330, y - 30, 330, y);
+				/*e.Graphics.DrawString(irow.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 80, y - 40);
                 e.Graphics.DrawLine(new Pen(Color.Black, 2), 150, y-50, 150, y);
                 e.Graphics.DrawString(dataGridView1.Rows[irow-1].Cells["productname"].Value.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 160, y - 40);
                 e.Graphics.DrawLine(new Pen(Color.Black, 2), 600, y - 50, 600, y);
                 e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["qty"].Value.ToString()+""+ dataGridView1.Rows[irow - 1].Cells["weightType"].Value.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 620, y - 40);
                 e.Graphics.DrawLine(new Pen(Color.Black, 2), 700, y - 50, 700, y);
                 e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 720, y - 40);
-                e.Graphics.DrawLine(new Pen(Color.Black, 2), 800, y - 50, 800, y);
-            }
-            e.Graphics.DrawString("மொத்த மதிப்பு", new Font("Modern No", 20,FontStyle.Bold), new SolidBrush(Color.Black), 300, y+50);
+                e.Graphics.DrawLine(new Pen(Color.Black, 2), 800, y - 50, 800, y);*/
+			}
+			if (y > 0)
+			{
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 50, y+5, 350, y+5);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 50, y + 5, 50, y + 55);
+				e.Graphics.DrawString("மொத்த விலை", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 230, y + 10);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 220, y + 5, 220, y + 55);
+				e.Graphics.DrawString("மொத்த எண்ணிக்கை", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 60, y + 10);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 50, y + 30, 350, y + 30);
+				e.Graphics.DrawString("(₹) " + label4.Text, new Font("Modern No", 8), new SolidBrush(Color.Black), 265, y + 35);
+				e.Graphics.DrawString(gridRowCnt.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 125, y + 35);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 350, y + 5, 350, y + 55);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 50, y + 55, 350, y + 55);
+				e.Graphics.DrawString("மீண்டும் வருக", new Font("Modern No", 7,FontStyle.Bold), new SolidBrush(Color.Black), 160, y + 60);
+			}
+			/*e.Graphics.DrawString("மொத்த மதிப்பு", new Font("Modern No", 20,FontStyle.Bold), new SolidBrush(Color.Black), 300, y+50);
             e.Graphics.DrawString("=", new Font("Modern No", 20, FontStyle.Bold), new SolidBrush(Color.Black), 600, y + 50);
             e.Graphics.DrawString(label4.Text, new Font("Modern No", 20, FontStyle.Bold), new SolidBrush(Color.Black), 700, y + 50);
             //MessageBox.Show(gridRowCnt.ToString());
-        }
+			*/
+		}
 
 		private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
 		{
