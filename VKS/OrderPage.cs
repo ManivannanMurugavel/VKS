@@ -336,7 +336,7 @@ namespace VKS
             int gridRowCnt = dataGridView1.Rows.Count;
 			//string tt = label2.Text.Split(' ')[1];
 			// Title
-			e.Graphics.DrawString("VKS", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(180, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
+			e.Graphics.DrawString("VKS Traders", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(180, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
 			// Contact Details
 			//e.Graphics.DrawString("தொலைபேசி", new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 80);
             e.Graphics.DrawString("9751550566", new Font("Modern No", 10), new SolidBrush(Color.Black), 165, 40);
