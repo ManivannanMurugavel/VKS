@@ -40,13 +40,20 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+			this.label3 = new System.Windows.Forms.Label();
+			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+			this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.button2 = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
+			this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(582, 35);
 			this.label1.Name = "label1";
@@ -88,21 +95,22 @@
 			// 
 			// panel1
 			// 
+			this.panel1.BackColor = System.Drawing.Color.Olive;
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.dateTimePicker1);
 			this.panel1.Controls.Add(this.label2);
-			this.panel1.Location = new System.Drawing.Point(107, 113);
+			this.panel1.Location = new System.Drawing.Point(176, 201);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1151, 518);
+			this.panel1.Size = new System.Drawing.Size(401, 448);
 			this.panel1.TabIndex = 2;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 			// 
 			// button1
 			// 
-			this.button1.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.Location = new System.Drawing.Point(480, 150);
+			this.button1.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button1.Location = new System.Drawing.Point(124, 312);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(199, 49);
+			this.button1.Size = new System.Drawing.Size(155, 41);
 			this.button1.TabIndex = 2;
 			this.button1.Text = "அச்சிடு";
 			this.button1.UseVisualStyleBackColor = true;
@@ -111,10 +119,10 @@
 			// dateTimePicker1
 			// 
 			this.dateTimePicker1.CustomFormat = "";
-			this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dateTimePicker1.Location = new System.Drawing.Point(601, 59);
+			this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dateTimePicker1.Location = new System.Drawing.Point(100, 203);
 			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(188, 35);
+			this.dateTimePicker1.Size = new System.Drawing.Size(205, 31);
 			this.dateTimePicker1.TabIndex = 1;
 			this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
 			// 
@@ -122,10 +130,10 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.BackColor = System.Drawing.Color.White;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(276, 58);
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(96, 104);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(273, 31);
+			this.label2.Size = new System.Drawing.Size(210, 25);
 			this.label2.TabIndex = 0;
 			this.label2.Text = "தேதியை தேர்ந்தெடு";
 			// 
@@ -143,13 +151,66 @@
 			this.printPreviewDialog1.Name = "printPreviewDialog1";
 			this.printPreviewDialog1.Visible = false;
 			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.BackColor = System.Drawing.Color.White;
+			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.Location = new System.Drawing.Point(95, 77);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(210, 25);
+			this.label3.TabIndex = 3;
+			this.label3.Text = "தேதியை தேர்ந்தெடு";
+			// 
+			// dateTimePicker2
+			// 
+			this.dateTimePicker2.CustomFormat = "";
+			this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dateTimePicker2.Location = new System.Drawing.Point(100, 161);
+			this.dateTimePicker2.Name = "dateTimePicker2";
+			this.dateTimePicker2.Size = new System.Drawing.Size(205, 31);
+			this.dateTimePicker2.TabIndex = 4;
+			// 
+			// dateTimePicker3
+			// 
+			this.dateTimePicker3.CustomFormat = "";
+			this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dateTimePicker3.Location = new System.Drawing.Point(100, 242);
+			this.dateTimePicker3.Name = "dateTimePicker3";
+			this.dateTimePicker3.Size = new System.Drawing.Size(205, 31);
+			this.dateTimePicker3.TabIndex = 5;
+			// 
+			// panel2
+			// 
+			this.panel2.BackColor = System.Drawing.Color.Teal;
+			this.panel2.Controls.Add(this.button2);
+			this.panel2.Controls.Add(this.label3);
+			this.panel2.Controls.Add(this.dateTimePicker3);
+			this.panel2.Controls.Add(this.dateTimePicker2);
+			this.panel2.Location = new System.Drawing.Point(751, 201);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(401, 448);
+			this.panel2.TabIndex = 6;
+			// 
+			// button2
+			// 
+			this.button2.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button2.Location = new System.Drawing.Point(127, 337);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(155, 41);
+			this.button2.TabIndex = 3;
+			this.button2.Text = "அச்சிடு";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
 			// Details
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.White;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.ClientSize = new System.Drawing.Size(1357, 726);
 			this.ControlBox = false;
+			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.menuStrip1);
@@ -162,6 +223,8 @@
 			this.menuStrip1.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -180,5 +243,10 @@
 		private System.Windows.Forms.Button button1;
 		private System.Drawing.Printing.PrintDocument printDocument1;
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+		private System.Windows.Forms.DateTimePicker dateTimePicker3;
+		private System.Windows.Forms.DateTimePicker dateTimePicker2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.Button button2;
 	}
 }

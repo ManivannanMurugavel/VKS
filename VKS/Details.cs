@@ -28,7 +28,11 @@ namespace VKS
 		private void Details_Load(object sender, EventArgs e)
 		{
 			dateTimePicker1.Format = DateTimePickerFormat.Custom;
+			dateTimePicker2.Format = DateTimePickerFormat.Custom;
+			dateTimePicker3.Format = DateTimePickerFormat.Custom;
 			dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+			dateTimePicker2.CustomFormat = "yyyy-MM-dd";
+			dateTimePicker3.CustomFormat = "yyyy-MM-dd";
 			string year_num = dateTimePicker1.Value.Year.ToString();
 			string month_num = dateTimePicker1.Value.Month.ToString();
 			string day_num = dateTimePicker1.Value.Day.ToString();
@@ -37,6 +41,8 @@ namespace VKS
 			if (day_num.Length == 1)
 				day_num = "0" + day_num;
 			dateTimePicker1.MaxDate = new DateTime(Convert.ToInt32(year_num),Convert.ToInt32(month_num),Convert.ToInt32(day_num));
+			dateTimePicker2.MaxDate = new DateTime(Convert.ToInt32(year_num), Convert.ToInt32(month_num), Convert.ToInt32(day_num));
+			dateTimePicker3.MaxDate = new DateTime(Convert.ToInt32(year_num), Convert.ToInt32(month_num), Convert.ToInt32(day_num));
 			//MessageBox.Show(year_num + '-' + month_num + '-' + day_num);
 		}
 
@@ -48,7 +54,8 @@ namespace VKS
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			try
+			
+			/*try
 			{
 				string searchdate = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString("D2") + '-' + dateTimePicker1.Value.Day.ToString("D2");
 				if (con.State == ConnectionState.Closed)
@@ -74,7 +81,7 @@ namespace VKS
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.ToString());
-			}
+			}*/
 			//panel1.Hide();
 		}
 
@@ -143,6 +150,36 @@ namespace VKS
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 350, y, 350, y + 30);
 				e.Graphics.DrawString("மீண்டும் வருக", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 160, y + 40);
 
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				string fromdate = dateTimePicker2.Value.Year.ToString() + '-' + dateTimePicker2.Value.Month.ToString("D2") + '-' + dateTimePicker2.Value.Day.ToString("D2");
+				fromdate = fromdate + " 00:00:00 AM";
+				string todate = dateTimePicker3.Value.Year.ToString() + '-' + dateTimePicker3.Value.Month.ToString("D2") + '-' + dateTimePicker3.Value.Day.ToString("D2");
+				todate = todate + " 00:00:00 AM";
+				//MessageBox.Show(fromdate);
+				//MessageBox.Show(todate);
+				if (con.State == ConnectionState.Closed)
+				{
+					con.Open();
+				}
+				cmd = con.CreateCommand();
+				cmd.CommandText = "select ordId from StoreOrderDetails where  Format(ordTime,'yyyy-MM-dd hh:mm:ss tt') between Format('"+fromdate+"','yyyy-MM-dd hh:mm:ss tt') and Format('"+todate+"','yyyy-MM-dd hh:mm:ss tt')";
+				OleDbDataReader reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					MessageBox.Show(reader["ordId"].ToString());
+				}
+				reader.Close();
+				con.Close();
 			}
 			catch (Exception ex)
 			{
