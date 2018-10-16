@@ -15,6 +15,8 @@ namespace VKS
 	{
 		OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:/VKS/databases/VKS.accdb");
 		OleDbCommand cmd;
+		string public_query;
+		string fromdate,todate, searchdate,type="";
 		public Details()
 		{
 			InitializeComponent();
@@ -55,15 +57,17 @@ namespace VKS
 		private void button1_Click(object sender, EventArgs e)
 		{
 			
-			/*try
+			try
 			{
-				string searchdate = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString("D2") + '-' + dateTimePicker1.Value.Day.ToString("D2");
+				type = "one";
+				searchdate = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString("D2") + '-' + dateTimePicker1.Value.Day.ToString("D2");
 				if (con.State == ConnectionState.Closed)
 				{
 					con.Open();
 				}
 				cmd = con.CreateCommand();
-				cmd.CommandText = "select count(b.prdName) as ProductName,b.weightType as WeightType,sum(b.qty) as TotalQty,sum(b.totalPrice) as TotalPrice from StoreOrderDetails a,StoreOrderItems b where  left(a.ordTime,10) = '" + searchdate + "' and a.ordId=b.ordId group by b.prdName,b.weightType";
+				cmd.CommandText = "select b.prdName as ProductName,b.weightType as WeightType,sum(b.qty) as TotalQty,sum(b.totalPrice) as TotalPrice from StoreOrderDetails a,StoreOrderItems b where  left(a.ordTime,10) = '" + searchdate + "' and a.ordId=b.ordId group by b.prdName,b.weightType";
+				public_query = cmd.CommandText;
 				int rowcount = 0;
 				OleDbDataReader reader = cmd.ExecuteReader();
 				while (reader.Read())
@@ -81,7 +85,7 @@ namespace VKS
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.ToString());
-			}*/
+			}
 			//panel1.Hide();
 		}
 
@@ -93,9 +97,16 @@ namespace VKS
 		{
 			try
 			{
-				string searchdate = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString("D2") + '-' + dateTimePicker1.Value.Day.ToString("D2");
+				//searchdate = dateTimePicker1.Value.Year.ToString() + '-' + dateTimePicker1.Value.Month.ToString("D2") + '-' + dateTimePicker1.Value.Day.ToString("D2");
 				e.Graphics.DrawString("VKS Traders", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(140, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
-				e.Graphics.DrawString(searchdate, new Font("Modern No", 10), new SolidBrush(Color.Black), 165, 40);
+				if (type == "one")
+					e.Graphics.DrawString(searchdate, new Font("Modern No", 10), new SolidBrush(Color.Black), 165, 40);
+				else
+				{
+					e.Graphics.DrawString(fromdate.Split(' ')[0], new Font("Modern No", 10), new SolidBrush(Color.Black), 125, 40);
+					e.Graphics.DrawString("---", new Font("Modern No", 10), new SolidBrush(Color.Black), 205, 40);
+					e.Graphics.DrawString(todate.Split(' ')[0], new Font("Modern No", 10), new SolidBrush(Color.Black), 225, 40);
+				}
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 60, 400, 60);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 90, 400, 90);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 60, 0, 90);
@@ -114,7 +125,8 @@ namespace VKS
 					con.Open();
 				}
 				cmd = con.CreateCommand();
-				cmd.CommandText = "select b.prdName as ProductName,b.weightType as WeightType,sum(b.qty) as TotalQty,sum(b.totalPrice) as TotalPrice from StoreOrderDetails a,StoreOrderItems b where  left(a.ordTime,10) = '" + searchdate + "' and a.ordId=b.ordId group by b.prdName,b.weightType";
+				//cmd.CommandText = "select b.prdName as ProductName,b.weightType as WeightType,sum(b.qty) as TotalQty,sum(b.totalPrice) as TotalPrice from StoreOrderDetails a,StoreOrderItems b where  left(a.ordTime,10) = '" + searchdate + "' and a.ordId=b.ordId group by b.prdName,b.weightType";
+				cmd.CommandText = public_query;
 				OleDbDataReader reader = cmd.ExecuteReader();
 				double totalQTY = 0;
 				double totalPRZ = 0;
@@ -161,9 +173,10 @@ namespace VKS
 		{
 			try
 			{
-				string fromdate = dateTimePicker2.Value.Year.ToString() + '-' + dateTimePicker2.Value.Month.ToString("D2") + '-' + dateTimePicker2.Value.Day.ToString("D2");
+				type = "two";
+				fromdate = dateTimePicker2.Value.Year.ToString() + '-' + dateTimePicker2.Value.Month.ToString("D2") + '-' + dateTimePicker2.Value.Day.ToString("D2");
 				fromdate = fromdate + " 00:00:00 AM";
-				string todate = dateTimePicker3.Value.Year.ToString() + '-' + dateTimePicker3.Value.Month.ToString("D2") + '-' + dateTimePicker3.Value.Day.ToString("D2");
+				todate = dateTimePicker3.Value.Year.ToString() + '-' + dateTimePicker3.Value.Month.ToString("D2") + '-' + dateTimePicker3.Value.Day.ToString("D2");
 				todate = todate + " 00:00:00 AM";
 				//MessageBox.Show(fromdate);
 				//MessageBox.Show(todate);
@@ -172,14 +185,22 @@ namespace VKS
 					con.Open();
 				}
 				cmd = con.CreateCommand();
-				cmd.CommandText = "select ordId from StoreOrderDetails where  Format(ordTime,'yyyy-MM-dd hh:mm:ss tt') between Format('"+fromdate+"','yyyy-MM-dd hh:mm:ss tt') and Format('"+todate+"','yyyy-MM-dd hh:mm:ss tt')";
+				//cmd.CommandText = "select ordId from StoreOrderDetails where  Format(ordTime,'yyyy-MM-dd hh:mm:ss tt') between Format('"+fromdate+"','yyyy-MM-dd hh:mm:ss tt') and Format('"+todate+"','yyyy-MM-dd hh:mm:ss tt')";
+				cmd.CommandText = "select b.prdName as ProductName,b.weightType as WeightType,sum(b.qty) as TotalQty,sum(b.totalPrice) as TotalPrice from StoreOrderDetails a,StoreOrderItems b where Format(a.ordTime,'yyyy-MM-dd hh:mm:ss tt') between Format('" + fromdate + "','yyyy-MM-dd hh:mm:ss tt') and Format('" + todate + "','yyyy-MM-dd hh:mm:ss tt') and a.ordId=b.ordId group by b.prdName,b.weightType";
+				public_query = cmd.CommandText;
 				OleDbDataReader reader = cmd.ExecuteReader();
+				int rowcount = 0;
 				while (reader.Read())
 				{
-					MessageBox.Show(reader["ordId"].ToString());
+					rowcount++;
 				}
+				rowcount = 180 + (rowcount * 30);
+				//MessageBox.Show(rowcount.ToString());
 				reader.Close();
 				con.Close();
+				printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, rowcount);
+				printPreviewDialog1.Document = printDocument1;
+				printPreviewDialog1.ShowDialog();
 			}
 			catch (Exception ex)
 			{
