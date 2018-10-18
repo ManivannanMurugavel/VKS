@@ -89,6 +89,13 @@ namespace VKS
 			//panel1.Hide();
 		}
 
+		private void button3_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			MainMenu mm = new MainMenu();
+			mm.Show();
+		}
+
 		private void panel1_Paint(object sender, PaintEventArgs e)
 		{
 		}
@@ -177,7 +184,7 @@ namespace VKS
 				fromdate = dateTimePicker2.Value.Year.ToString() + '-' + dateTimePicker2.Value.Month.ToString("D2") + '-' + dateTimePicker2.Value.Day.ToString("D2");
 				fromdate = fromdate + " 00:00:00 AM";
 				todate = dateTimePicker3.Value.Year.ToString() + '-' + dateTimePicker3.Value.Month.ToString("D2") + '-' + dateTimePicker3.Value.Day.ToString("D2");
-				todate = todate + " 00:00:00 AM";
+				todate = todate + " 11:59:59 PM";
 				//MessageBox.Show(fromdate);
 				//MessageBox.Show(todate);
 				if (con.State == ConnectionState.Closed)

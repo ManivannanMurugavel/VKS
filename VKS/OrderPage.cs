@@ -247,12 +247,12 @@ namespace VKS
 
         private void button3_Click(object sender, EventArgs e)
         {
-			/*if (dataGridView1.RowCount == 0)
+			if (dataGridView1.RowCount == 0)
             {
                 MessageBox.Show("பொருளை சேர்க்கவும்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-			*/
+			
             if (alreadySaved)
             {
 				printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 600);
@@ -265,25 +265,27 @@ namespace VKS
 				MessageBox.Show("வாடிக்கையாளர் பெயர் மற்றும் கைபேசி சேர்க்கவும்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
 			}
-			/*DialogResult dr = MessageBox.Show("உங்களது பொருள்களை சேமிக்கலாமா", "ஆர்டர்",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+			DialogResult dr = MessageBox.Show("உங்களது பொருள்களை சேமிக்கலாமா", "ஆர்டர்",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
             if(dr == DialogResult.Yes)
             {
                 //MessageBox.Show(ordIdNum);
                 try
                 {
-                    MessageBox.Show(ordIdNum);
+                    //MessageBox.Show(ordIdNum);
                     if(ordIdNum.Length < 8)
                     {
                         ordIdNum = Convert.ToInt32(Convert.ToInt32(ordIdNum) + 1).ToString("D4");
                         ordIdNum = "VKSSTRORD" + ordIdNum;
                     }                       
                     string username = "";
+					string clientname = textBox2.Text;
+					string clientcnum = textBox3.Text;
 					username = Login.userName;
                     string prdType = "StoreProduct";
                     if (con.State == ConnectionState.Closed)
                         con.Open();
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "insert into StoreOrderDetails(ordId,totalQty,totalPrice,userName,ordTime) values('"+ordIdNum+"',"+ totalPrdQty + ","+Convert.ToDouble(label4.Text)+",'"+username+"','"+ DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "')";
+                    cmd.CommandText = "insert into StoreOrderDetails(ordId,totalQty,totalPrice,userName,ordTime,clientName,clientCNum) values('"+ordIdNum+"',"+ totalPrdQty + ","+Convert.ToDouble(label4.Text)+",'"+username+"','"+ DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt") + "','"+clientname+"','"+clientcnum+"')";
                     cmd.ExecuteNonQuery();
                     int datagridlength = dataGridView1.RowCount;
                     //MessageBox.Show(datagridlength.ToString());
@@ -314,7 +316,7 @@ namespace VKS
             {
                 MessageBox.Show("உங்களது பொருள்கள் சேமிக்கப்படவில்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-			*/
+			
 			try
 			{
 				printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 600);
@@ -336,7 +338,7 @@ namespace VKS
             int gridRowCnt = dataGridView1.Rows.Count;
 			//string tt = label2.Text.Split(' ')[1];
 			// Title
-			e.Graphics.DrawString("VKS Traders", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(180, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
+			e.Graphics.DrawString("VKS Traders", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(130, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
 			// Contact Details
 			//e.Graphics.DrawString("தொலைபேசி", new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 80);
             e.Graphics.DrawString("9751550566", new Font("Modern No", 10), new SolidBrush(Color.Black), 165, 40);

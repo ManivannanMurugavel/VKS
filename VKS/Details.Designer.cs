@@ -35,6 +35,7 @@
 			this.இனறயமதபபToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.இனறயமதததறகனமதபபToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label4 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.label2 = new System.Windows.Forms.Label();
@@ -44,9 +45,9 @@
 			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
 			this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.button2 = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -110,8 +111,21 @@
 			this.panel1.TabIndex = 2;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.label4.Font = new System.Drawing.Font("News706 BT", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label4.Location = new System.Drawing.Point(145, 12);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(114, 31);
+			this.label4.TabIndex = 3;
+			this.label4.Text = "ஒரு நாள்";
+			this.label4.UseMnemonic = false;
+			// 
 			// button1
 			// 
+			this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button1.Location = new System.Drawing.Point(124, 312);
 			this.button1.Name = "button1";
@@ -198,29 +212,6 @@
 			this.panel2.Size = new System.Drawing.Size(401, 448);
 			this.panel2.TabIndex = 6;
 			// 
-			// button2
-			// 
-			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button2.Location = new System.Drawing.Point(127, 354);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(155, 41);
-			this.button2.TabIndex = 3;
-			this.button2.Text = "அச்சிடு";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label4.Font = new System.Drawing.Font("News706 BT", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(145, 12);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(114, 31);
-			this.label4.TabIndex = 3;
-			this.label4.Text = "ஒரு நாள்";
-			this.label4.UseMnemonic = false;
-			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
@@ -232,6 +223,31 @@
 			this.label5.TabIndex = 6;
 			this.label5.Text = "ஒரு மாதம்";
 			// 
+			// button2
+			// 
+			this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button2.Location = new System.Drawing.Point(127, 354);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(155, 41);
+			this.button2.TabIndex = 3;
+			this.button2.Text = "அச்சிடு";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// button3
+			// 
+			this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.button3.Font = new System.Drawing.Font("News706 BT", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button3.Location = new System.Drawing.Point(1187, 675);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(140, 39);
+			this.button3.TabIndex = 7;
+			this.button3.Text = "பின் செல்ல";
+			this.button3.UseVisualStyleBackColor = false;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// Details
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,6 +255,7 @@
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.ClientSize = new System.Drawing.Size(1357, 726);
 			this.ControlBox = false;
+			this.Controls.Add(this.button3);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.label1);
@@ -279,5 +296,6 @@
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Button button3;
 	}
 }
