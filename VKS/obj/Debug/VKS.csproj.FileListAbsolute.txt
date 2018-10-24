@@ -1,21 +1,3 @@
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\bin\Debug\VKS.exe.config
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\bin\Debug\VKS.exe
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\bin\Debug\VKS.pdb
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.csprojAssemblyReference.cache
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.addProduct.resources
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Properties.Resources.resources
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.csproj.GenerateResource.cache
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.csproj.CoreCompileInputs.cache
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.exe
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.pdb
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.MainMenu.resources
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.OrderPage.resources
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.ProductDetails.resources
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.ProductPrice.resources
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.PriceChange.resources
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Login.resources
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.UserDetails.resources
-D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Details.resources
 F:\VKS\VKS\bin\Debug\VKS.exe.config
 F:\VKS\VKS\obj\Debug\VKS.exe
 F:\VKS\VKS\obj\Debug\VKS.pdb
@@ -39,3 +21,20 @@ F:\VKS\VKS\obj\Debug\VKS.ProductPrice.resources
 F:\VKS\VKS\obj\Debug\VKS.Properties.Resources.resources
 F:\VKS\VKS\obj\Debug\VKS.UserDetails.resources
 F:\VKS\VKS\obj\Debug\VKS.csproj.GenerateResource.Cache
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\bin\Debug\VKS.exe.config
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\bin\Debug\VKS.exe
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\bin\Debug\VKS.pdb
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Details.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.addProduct.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Login.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.MainMenu.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.OrderPage.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.PriceChange.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.ProductDetails.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.ProductPrice.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.Properties.Resources.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.UserDetails.resources
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.csproj.GenerateResource.cache
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.csproj.CoreCompileInputs.cache
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.exe
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.pdb

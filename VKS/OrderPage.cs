@@ -343,50 +343,52 @@ namespace VKS
             int gridRowCnt = dataGridView1.Rows.Count;
 			//string tt = label2.Text.Split(' ')[1];
 			// Title
-			e.Graphics.DrawString("VKS Traders", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(130, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
+			e.Graphics.DrawString("VKS Traders", new Font("Modern No", 15, FontStyle.Bold), new SolidBrush(Color.Black), new RectangleF(135, 10, printDocument1.DefaultPageSettings.PrintableArea.Width, printDocument1.DefaultPageSettings.PrintableArea.Height));
 			// Contact Details
 			//e.Graphics.DrawString("தொலைபேசி", new Font("Modern No", 20), new SolidBrush(Color.Black), 200, 80);
-            e.Graphics.DrawString("9751550566", new Font("Modern No", 10), new SolidBrush(Color.Black), 165, 40);
-			e.Graphics.DrawString("வாங்கிய பொருள்கள்", new Font("Modern No", 10), new SolidBrush(Color.Black), 120, 60);
+            
+			e.Graphics.DrawString("வாங்கிய பொருள்கள்", new Font("Modern No", 10), new SolidBrush(Color.Black), 120, 50);
 			//e.Graphics.DrawImage(Image.FromFile("C:/VKS/images/vks-logo.jpg"), 320, 0);
 
 			// Left Information
-			e.Graphics.DrawString("உரிமை", new Font("Modern No", 10,FontStyle.Bold), new SolidBrush(Color.Black), 30, 30);
-			e.Graphics.DrawString("வைரமணி", new Font("Modern No", 10), new SolidBrush(Color.Black), 20, 50);
+			e.Graphics.DrawString("உரிமை", new Font("Modern No", 10,FontStyle.Bold), new SolidBrush(Color.Black), 30, 10);
+			e.Graphics.DrawString("வைரமணி", new Font("Modern No", 10), new SolidBrush(Color.Black), 20, 30);
+			e.Graphics.DrawString("9751550566", new Font("Modern No", 10), new SolidBrush(Color.Black), 25, 50);
 
 			// Right Information
-			e.Graphics.DrawString(textBox2.Text, new Font("Modern No", 10), new SolidBrush(Color.Black), 300, 20);
-			e.Graphics.DrawString(textBox3.Text, new Font("Modern No", 10), new SolidBrush(Color.Black), 300, 40);
+			e.Graphics.DrawString("வாங்கியவர்", new Font("Modern No", 10, FontStyle.Bold), new SolidBrush(Color.Black), 285, 10);
+			e.Graphics.DrawString(textBox2.Text, new Font("Modern No", 10), new SolidBrush(Color.Black), 300, 30);
+			e.Graphics.DrawString(textBox3.Text, new Font("Modern No", 10), new SolidBrush(Color.Black), 300, 50);
 
 			// Order Informations
-			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 85, 400, 85);
-			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 88, 400, 88);
-			e.Graphics.DrawString("எண் :", new Font("Modern No", 10), new SolidBrush(Color.Black), 10, 95);
-            e.Graphics.DrawString(label5.Text, new Font("Modern No", 10), new SolidBrush(Color.Black), 60, 95);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 75, 400, 75);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 78, 400, 78);
+			e.Graphics.DrawString("எண் :", new Font("Modern No", 10), new SolidBrush(Color.Black), 10, 85);
+            e.Graphics.DrawString(label5.Text, new Font("Modern No", 10), new SolidBrush(Color.Black), 60, 85);
 			
-			e.Graphics.DrawString("தேதி :", new Font("Modern No", 10), new SolidBrush(Color.Black), 125, 95);
-			e.Graphics.DrawString(label2.Text.Split(' ')[0], new Font("Modern No", 10), new SolidBrush(Color.Black), 175, 95);
+			e.Graphics.DrawString("தேதி :", new Font("Modern No", 10), new SolidBrush(Color.Black), 125, 85);
+			e.Graphics.DrawString(label2.Text.Split(' ')[0], new Font("Modern No", 10), new SolidBrush(Color.Black), 175, 85);
 
-			e.Graphics.DrawString("Time :", new Font("Modern No", 10), new SolidBrush(Color.Black), 270, 95);
-			e.Graphics.DrawString(label2.Text.Split(' ')[1], new Font("Modern No", 10), new SolidBrush(Color.Black), 310, 95);
-			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 115, 400, 115);
+			e.Graphics.DrawString("Time :", new Font("Modern No", 10), new SolidBrush(Color.Black), 270, 85);
+			e.Graphics.DrawString(label2.Text.Split(' ')[1], new Font("Modern No", 10), new SolidBrush(Color.Black), 310, 85);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 105, 400, 105);
 			//e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 118, 400, 118);
 			// Product List
 			//e.Graphics.DrawLine(new Pen(Color.Black, 2), 150, 310, 150, 360);
-			e.Graphics.DrawString("வ", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 10, 120);
-			e.Graphics.DrawString("எண்", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 5, 130);
-			e.Graphics.DrawLine(new Pen(Color.Black, 1), 38, 115, 38, 145);
-			e.Graphics.DrawString("பொருளின் பெயர்", new Font("Modern No", 8,FontStyle.Bold), new SolidBrush(Color.Black), 55, 125);
-			e.Graphics.DrawLine(new Pen(Color.Black, 1), 190, 115, 190, 145);
-			e.Graphics.DrawString("அளவு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 205, 125);
-			e.Graphics.DrawLine(new Pen(Color.Black, 1), 260, 115, 260, 145);
-			e.Graphics.DrawString("அலகு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 275, 125);
-			e.Graphics.DrawLine(new Pen(Color.Black, 1), 330, 115, 330, 145);
-			e.Graphics.DrawString("மதிப்பு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 345, 125);
-			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 145, 400, 145);
-			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 148, 400, 148);
+			e.Graphics.DrawString("வ", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 10, 110);
+			e.Graphics.DrawString("எண்", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 5, 120);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 38, 105, 38, 135);
+			e.Graphics.DrawString("பொருளின் பெயர்", new Font("Modern No", 8,FontStyle.Bold), new SolidBrush(Color.Black), 55, 115);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 190, 105, 190, 135);
+			e.Graphics.DrawString("அளவு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 195, 115);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 260, 105, 260, 135);
+			e.Graphics.DrawString("அலகு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 275, 115);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 330, 105, 330, 135);
+			e.Graphics.DrawString("மதிப்பு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 345, 115);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 135, 400, 135);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 138, 400, 138);
 			
-            int rowValue = 145;
+            int rowValue = 135;
             int y = 0;
             // Order List
             for(int irow=1;irow<=gridRowCnt;irow++)
