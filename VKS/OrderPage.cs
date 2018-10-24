@@ -18,7 +18,7 @@ namespace VKS
         OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:/VKS/databases/VKS.accdb");
         OleDbCommand cmd;
         int num = 0;
-        string name = "";
+        string name = "",quantitytext;
         double prdprice,quantity,original;
         string ordIdNum = "";
         double totalPrdQty = 0;
@@ -86,12 +86,16 @@ namespace VKS
 				}
 				name = comboBox2.SelectedItem.ToString();
 				prdprice = Convert.ToDouble(prdPrice.Text);
-
+				quantitytext = quantity.ToString("#.000");
+				if (quantitytext[0] == '.')
+					quantitytext = "0" + quantitytext;
+				//MessageBox.Show(quantitytext);
 				totalPrdQty = totalPrdQty + quantity;
 				num++;
 				double totalamount = (quantity * prdprice);
+				
 				label4.Text = (Convert.ToDouble(label4.Text) + totalamount).ToString();
-				dataGridView1.Rows.Add(num, textBox1.Text, name, prdprice, quantity, original, weighttype, totalamount);
+				dataGridView1.Rows.Add(num, textBox1.Text, name, prdprice, quantitytext, original, weighttype, totalamount.ToString("#.00"));
 				comboBox1.SelectedIndex = -1;
 				comboBox2.SelectedIndex = -1;
 				comboBox2.Items.Clear();
@@ -101,6 +105,7 @@ namespace VKS
 				prdPrice.Text = "";
 				qtyValue.Text = "";
 				row++;
+				//MessageBox.Show(quantity.ToString("#.000")[0].ToString());
 			}
 			catch (InvalidOperationException ex)
 			{
@@ -247,11 +252,11 @@ namespace VKS
 
         private void button3_Click(object sender, EventArgs e)
         {
-			if (dataGridView1.RowCount == 0)
+			/*if (dataGridView1.RowCount == 0)
             {
                 MessageBox.Show("பொருளை சேர்க்கவும்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            }
+            }*/
 			
             if (alreadySaved)
             {
@@ -260,7 +265,7 @@ namespace VKS
                 printPreviewDialog1.ShowDialog();
                 return;
             }
-			if (textBox2.Text == "பெயர்" && textBox3.Text == "கைபேசி")
+			/*if (textBox2.Text == "பெயர்" && textBox3.Text == "கைபேசி")
 			{
 				MessageBox.Show("வாடிக்கையாளர் பெயர் மற்றும் கைபேசி சேர்க்கவும்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
@@ -315,8 +320,8 @@ namespace VKS
             else
             {
                 MessageBox.Show("உங்களது பொருள்கள் சேமிக்கப்படவில்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-			
+            }*/
+
 			try
 			{
 				printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("custom", 400, 600);
@@ -366,9 +371,12 @@ namespace VKS
 			e.Graphics.DrawString(label2.Text.Split(' ')[1], new Font("Modern No", 10), new SolidBrush(Color.Black), 310, 95);
 			e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 115, 400, 115);
 			//e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 118, 400, 118);
-            // Product List
-            //e.Graphics.DrawLine(new Pen(Color.Black, 2), 150, 310, 150, 360);
-            e.Graphics.DrawString("பொருளின் பெயர்", new Font("Modern No", 8,FontStyle.Bold), new SolidBrush(Color.Black), 40, 125);
+			// Product List
+			//e.Graphics.DrawLine(new Pen(Color.Black, 2), 150, 310, 150, 360);
+			e.Graphics.DrawString("வ", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 10, 120);
+			e.Graphics.DrawString("எண்", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 5, 130);
+			e.Graphics.DrawLine(new Pen(Color.Black, 1), 38, 115, 38, 145);
+			e.Graphics.DrawString("பொருளின் பெயர்", new Font("Modern No", 8,FontStyle.Bold), new SolidBrush(Color.Black), 55, 125);
 			e.Graphics.DrawLine(new Pen(Color.Black, 1), 190, 115, 190, 145);
 			e.Graphics.DrawString("அளவு", new Font("Modern No", 8, FontStyle.Bold), new SolidBrush(Color.Black), 205, 125);
 			e.Graphics.DrawLine(new Pen(Color.Black, 1), 260, 115, 260, 145);
@@ -385,13 +393,33 @@ namespace VKS
             {
                 y = rowValue + (irow * 30);
                 e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, y, 400, y);
-				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["productname"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 10, y - 20);
-				e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, y-30, 0, y);
-				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["qty"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 195, y - 20);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, y - 30, 0, y);
+				int x = 20;
+				if (irow >= 10)
+					x = 13;
+
+				e.Graphics.DrawString((irow).ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), x, y - 20);
+				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["productname"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 40, y - 20);
+				e.Graphics.DrawLine(new Pen(Color.Black, 1), 38, y-30, 38, y);
+				x = 217;
+				if (dataGridView1.Rows[irow - 1].Cells["qty"].Value.ToString().Length == 6)
+					x = 211;
+				else if (dataGridView1.Rows[irow - 1].Cells["qty"].Value.ToString().Length == 7)
+					x = 205;
+				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["qty"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), x, y - 20);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 190, y - 30, 190, y);
 				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["weightType"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 265, y - 20);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 260, y - 30, 260, y);
-				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), 335, y - 20);
+				x = 360;
+				if (dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString().Length == 5)
+					x = 354;
+				else if (dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString().Length == 6)
+					x = 348;
+				else if (dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString().Length == 7)
+					x = 342;
+				else if (dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString().Length == 8)
+					x = 336;
+				e.Graphics.DrawString(dataGridView1.Rows[irow - 1].Cells["totalprice"].Value.ToString(), new Font("Modern No", 8), new SolidBrush(Color.Black), x, y - 20);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 330, y - 30, 330, y);
 				/*e.Graphics.DrawString(irow.ToString(), new Font("Modern No", 15), new SolidBrush(Color.Black), 80, y - 40);
                 e.Graphics.DrawLine(new Pen(Color.Black, 2), 150, y-50, 150, y);
