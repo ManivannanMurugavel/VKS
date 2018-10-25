@@ -252,11 +252,11 @@ namespace VKS
 
         private void button3_Click(object sender, EventArgs e)
         {
-			/*if (dataGridView1.RowCount == 0)
+			if (dataGridView1.RowCount == 0)
             {
                 MessageBox.Show("பொருளை சேர்க்கவும்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            }*/
+            }
 			
             if (alreadySaved)
             {
@@ -265,7 +265,7 @@ namespace VKS
                 printPreviewDialog1.ShowDialog();
                 return;
             }
-			/*if (textBox2.Text == "பெயர்" && textBox3.Text == "கைபேசி")
+			if (textBox2.Text == "பெயர்" && textBox3.Text == "கைபேசி")
 			{
 				MessageBox.Show("வாடிக்கையாளர் பெயர் மற்றும் கைபேசி சேர்க்கவும்", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
@@ -320,7 +320,7 @@ namespace VKS
             else
             {
                 MessageBox.Show("உங்களது பொருள்கள் சேமிக்கப்படவில்லை", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }*/
+            }
 
 			try
 			{
@@ -444,7 +444,8 @@ namespace VKS
 				e.Graphics.DrawString(gridRowCnt.ToString(), new Font("Modern No", 8,FontStyle.Bold), new SolidBrush(Color.Black), 125, y + 35);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 350, y + 5, 350, y + 55);
 				e.Graphics.DrawLine(new Pen(Color.Black, 1), 50, y + 55, 350, y + 55);
-				e.Graphics.DrawString("மீண்டும் வருக", new Font("Modern No", 7,FontStyle.Bold), new SolidBrush(Color.Black), 160, y + 60);
+				e.Graphics.DrawString("நன்றி", new Font("Modern No", 7, FontStyle.Bold), new SolidBrush(Color.Black), 185, y + 60);
+				e.Graphics.DrawString("மீண்டும் வருக", new Font("Modern No", 7,FontStyle.Bold), new SolidBrush(Color.Black), 160, y + 75);
 			}
 			/*e.Graphics.DrawString("மொத்த மதிப்பு", new Font("Modern No", 20,FontStyle.Bold), new SolidBrush(Color.Black), 300, y+50);
             e.Graphics.DrawString("=", new Font("Modern No", 20, FontStyle.Bold), new SolidBrush(Color.Black), 600, y + 50);
