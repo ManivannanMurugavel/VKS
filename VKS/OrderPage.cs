@@ -214,10 +214,26 @@ namespace VKS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MainMenu mm = new MainMenu();
+			/*MainMenu mm = new MainMenu();
             mm.Show();
-            this.Hide();
-        }
+            this.Hide();*/
+			con.Open();
+			cmd = con.CreateCommand();
+			cmd.CommandText = "ALTER TABLE HomeProductDetails ALTER COLUMN ID COUNTER(1,1)";
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = "ALTER TABLE StockDetails ALTER COLUMN ID COUNTER(1,1)";
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = "ALTER TABLE StoreOrderDetails ALTER COLUMN ID COUNTER(1,1)";
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = "ALTER TABLE StoreOrderItems ALTER COLUMN ID COUNTER(1,1)";
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = "ALTER TABLE StoreProductDetails ALTER COLUMN ID COUNTER(1,1)";
+			cmd.ExecuteNonQuery();
+			cmd.CommandText = "ALTER TABLE StoreProductPrice ALTER COLUMN ID COUNTER(1,1)";
+			cmd.ExecuteNonQuery();
+			con.Close();
+
+		}
 
         private void OrderPage_Load(object sender, EventArgs e)
         {
