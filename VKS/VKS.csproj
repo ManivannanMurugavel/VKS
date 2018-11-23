@@ -82,6 +82,12 @@
     <Compile Include="PriceChange.Designer.cs">
       <DependentUpon>PriceChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrinterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrinterForm.Designer.cs">
+      <DependentUpon>PrinterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PriceChange.resx">
       <DependentUpon>PriceChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrinterForm.resx">
+      <DependentUpon>PrinterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductDetails.resx">
       <DependentUpon>ProductDetails.cs</DependentUpon>

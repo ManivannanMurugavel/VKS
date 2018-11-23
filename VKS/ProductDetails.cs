@@ -27,30 +27,35 @@ namespace VKS
 
         private void ProductDetails_Load(object sender, EventArgs e)
         {
-            try
-            {
-                tablename = MainMenu.tableName;
-                if (con.State == ConnectionState.Closed)
-                    con.Open();
-                cmd = con.CreateCommand();
-                cmd.CommandText = "select prdId,cateName,prdName,qty,price from "+ tablename;
-                if(tablename == "StoreProductDetails")
-                {
-                    cmd.CommandText = "select distinct a.prdId as prdId,a.cateName as cateName,a.prdName as prdName,b.qty as qty,c.price as price from StoreProductDetails a,StockDetails b,StoreProductPrice c where a.prdId=b.prdId and a.prdId=c.prdId";
-                }
-                OleDbDataReader reader = cmd.ExecuteReader();
-                if(reader.HasRows)
-                {
-                    while(reader.Read())
-                    {
-                        dataGridView1.Rows.Add(reader["prdId"], reader["cateName"], reader["prdName"], reader["qty"], reader["price"]);
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+			try
+			{
+				tablename = MainMenu.tableName;
+				if (con.State == ConnectionState.Closed)
+					con.Open();
+				cmd = con.CreateCommand();
+				cmd.CommandText = "select prdId,cateName,prdName,qty,price from " + tablename;
+				if (tablename == "StoreProductDetails")
+				{
+					cmd.CommandText = "select distinct a.prdId as prdId,a.cateName as cateName,a.prdName as prdName,b.qty as qty,c.weightType,c.price as price from StoreProductDetails a,StockDetails b,StoreProductPrice c where a.prdId=b.prdId and a.prdId=c.prdId";
+				}
+				OleDbDataReader reader = cmd.ExecuteReader();
+				if (reader.HasRows)
+				{
+					while (reader.Read())
+					{
+						dataGridView1.Rows.Add(reader["prdId"], reader["cateName"], reader["prdName"], reader["qty"], reader["weightType"], reader["price"]);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				if (con.State == ConnectionState.Open)
+					con.Close();
+			}
         }
 
         private void back_Click(object sender, EventArgs e)
@@ -65,7 +70,7 @@ namespace VKS
         {
             product = "new";
             addProduct ap = new addProduct();
-            ap.Show();
+            ap.ShowDialog(this);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -84,7 +89,7 @@ namespace VKS
                 cateName = dataGridView1.Rows[selectedrowindex].Cells["categoryname"].Value.ToString();
                 prdname = dataGridView1.Rows[selectedrowindex].Cells["productname"].Value.ToString();
                 addProduct ap = new addProduct();
-                ap.Show();
+                ap.ShowDialog(this);
             }
             catch(ArgumentOutOfRangeException)
             {

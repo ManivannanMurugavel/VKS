@@ -20,8 +20,8 @@ namespace VKS
         int num = 0;
         string name = "",quantitytext;
         double prdprice,quantity,original;
-        string ordIdNum = "";
-        double totalPrdQty = 0;
+        string ordIdNum = "", weighttype;
+		double totalPrdQty = 0;
         //string[,] orderProductsList;
         int row = 0;
         int col = 0;
@@ -62,15 +62,25 @@ namespace VKS
 			//MessageBox.Show(currPrdAvaQty.ToString());
 			try
 			{
+				prdPrice.ReadOnly = true;
 				quantity = Convert.ToDouble(qtyValue.Text);
 				original = quantity;
-				string weighttype = "கிலோ";
-				if (comboBox3.SelectedItem.ToString() == "லிட்டர்")
+				//MessageBox.Show(weighttype);
+				//weighttype = "லிட்டர்";
+				if (comboBox3.SelectedItem.ToString() != weighttype)
 				{
-					original = Convert.ToDouble(qtyValue.Text)*1.11;
-					weighttype = "லிட்டர்";
+					if (comboBox3.SelectedItem.ToString() == "கிலோ")
+					{
+						original = Convert.ToDouble(qtyValue.Text) * 1.1;
+						weighttype = "கிலோ";
+					}
+					else
+					{
+						original = Convert.ToDouble(qtyValue.Text) * 0.91;
+						weighttype = "லிட்டர்";
+					}
 				}
-				if (quantity > currPrdAvaQty)
+				if (original > currPrdAvaQty)
 				{
 					MessageBox.Show("இந்த பொருளின் இருப்பு " + currPrdAvaQty.ToString() + " உள்ளது", "ஆர்டர்", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					return;
@@ -145,13 +155,15 @@ namespace VKS
                 if (con.State == ConnectionState.Closed)
                     con.Open();
                 cmd = con.CreateCommand();
-                cmd.CommandText = "select prdId from StoreProductDetails where cateName='"+catename+"' and prdName='"+prdname+"'";
+                cmd.CommandText = "select prdId,weightType from StoreProductDetails where cateName='"+catename+"' and prdName='"+prdname+"'";
                 OleDbDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
                     reader.Read();
                     textBox1.Text = reader["prdId"].ToString();
-                    cmd.CommandText = "select price from StoreProductPrice where prdId='"+textBox1.Text+"' and weightType='"+comboBox3.SelectedItem.ToString()+"'";
+					weighttype = reader["weightType"].ToString();
+					comboBox3.SelectedItem = weighttype;
+					cmd.CommandText = "select price from StoreProductPrice where prdId='"+textBox1.Text+"' and weightType='"+comboBox3.SelectedItem.ToString()+"'";
                     reader.Close();
                     reader = cmd.ExecuteReader();
                     reader.Read();
@@ -218,9 +230,34 @@ namespace VKS
             mm.Show();
             this.Hide();
 		}
-
+		private void LastOrderDetails()
+		{
+			try
+			{
+				if (con.State == ConnectionState.Closed)
+					con.Open();
+				cmd = con.CreateCommand();
+				cmd.CommandText = "SELECT TOP 1 ordId,totalQty,totalPrice FROM StoreOrderDetails ORDER BY ID DESC";
+				OleDbDataReader reader = cmd.ExecuteReader();
+				if (reader.HasRows)
+				{
+					reader.Read();
+					label10.Text = reader["ordId"].ToString();
+					label11.Text = reader["totalQty"].ToString();
+					label12.Text = reader["totalPrice"].ToString();
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+		}
         private void OrderPage_Load(object sender, EventArgs e)
         {
+			LastOrderDetails();
+			dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+			dataGridView1.EnableHeadersVisualStyles = false;
+			prdPrice.ReadOnly = true;
 			textBox2.Text = "பெயர்";
 			textBox2.ForeColor = Color.Gray;
 			textBox3.Text = "கைபேசி";
@@ -492,11 +529,11 @@ namespace VKS
 			}
 			finally
 			{
-				if (con.State == ConnectionState.Open)
+				/*if (con.State == ConnectionState.Open)
 				{
 					con.Close();
-					cmd.Dispose();
-				}
+					//cmd.Dispose();
+				}*/
 				
 			}
 		}
@@ -517,6 +554,16 @@ namespace VKS
 				textBox3.Text = "";
 				textBox3.ForeColor = Color.Black;
 			}
+		}
+
+		private void Price_Change(object sender, EventArgs e)
+		{
+			prdPrice.ReadOnly = false;
+		}
+
+		private void label7_Click(object sender, EventArgs e)
+		{
+
 		}
 
 		private void textBox3_Leave(object sender, EventArgs e)

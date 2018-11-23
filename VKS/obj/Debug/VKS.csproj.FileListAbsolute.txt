@@ -39,3 +39,4 @@ D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.csproj.CoreCompileInp
 D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.exe
 D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.pdb
 D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.csprojAssemblyReference.cache
+D:\Dot Net\DotNetExample\C#-Projects\VKS\VKS\obj\Debug\VKS.PrinterForm.resources

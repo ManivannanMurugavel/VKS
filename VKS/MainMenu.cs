@@ -58,7 +58,7 @@ namespace VKS
         private void button5_Click(object sender, EventArgs e)
         {
             ProductPrice pp = new ProductPrice();
-            pp.Show();
+			pp.ShowDialog(this);
             //this.Hide();
         }
 

@@ -307,6 +307,7 @@ namespace VKS
                 int price = Convert.ToInt32(prdPrice.Text);
                 int qty = Convert.ToInt32(qtyValue.Value);
                 int totalPrice = Convert.ToInt32(ttlPrice.Text);
+				string weighttype = comboBox4.SelectedItem.ToString();
                 string dateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string username = "";
                 cmd = con.CreateCommand();
@@ -318,7 +319,7 @@ namespace VKS
                         return;
                     }
                 }
-                cmd.CommandText = "insert into "+ table + "(prdId,cateName,prdName,qty,price,totalPrice,userName,isDeleted,prdTime) values('"+id+"','"+catePrd+"','"+prdName+"',"+qty+","+price+","+totalPrice+",'"+username+"',"+0+",'" + dateTime + "')";
+                cmd.CommandText = "insert into "+ table + "(prdId,cateName,prdName,weightType,qty,price,totalPrice,userName,isDeleted,prdTime) values('"+id+"','"+catePrd+"','"+prdName+"','"+weighttype+"',"+qty+","+price+","+totalPrice+",'"+username+"',"+0+",'" + dateTime + "')";
                 int result = cmd.ExecuteNonQuery();
                 if (result > 0)
                 {

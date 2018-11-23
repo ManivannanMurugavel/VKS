@@ -229,6 +229,11 @@
 			// 
 			this.qtyValue.Font = new System.Drawing.Font("News706 BT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.qtyValue.Location = new System.Drawing.Point(407, 456);
+			this.qtyValue.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
 			this.qtyValue.Name = "qtyValue";
 			this.qtyValue.Size = new System.Drawing.Size(78, 27);
 			this.qtyValue.TabIndex = 14;
@@ -288,7 +293,6 @@
 			this.comboBox4.Size = new System.Drawing.Size(68, 27);
 			this.comboBox4.TabIndex = 18;
 			this.comboBox4.Text = "தேர்ந்தெடு";
-			this.comboBox4.Visible = false;
 			// 
 			// addProduct
 			// 
